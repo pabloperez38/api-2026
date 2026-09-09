@@ -1,10 +1,10 @@
-# NetxERP - API de Gestión de Ventas
+# NextERP - API de Gestión de Ventas
 
 Una API REST robusta construida con **Laravel 12** para la gestión integral de ventas, inventario, clientes y pagos. Sistema ERP diseñado para facilitar operaciones comerciales en tiempo real.
 
 ## 🚀 Descripción General
 
-NetxERP es un sistema de gestión empresarial (ERP) especializado en la administración de ventas. Proporciona una API completa para:
+NextERP es un sistema de gestión empresarial (ERP) especializado en la administración de ventas. Proporciona una API completa para:
 
 - **Gestión de Ventas**: Crear, actualizar y consultar órdenes de venta
 - **Inventario**: Controlar stock de productos y movimientos de inventario
@@ -79,7 +79,7 @@ Edita el archivo `.env` con tus credenciales:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=netxerp
+DB_DATABASE=NextERP
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -509,12 +509,12 @@ Ver [composer.json](composer.json) para la lista completa.
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=netxerp
+DB_DATABASE=NextERP
 DB_USERNAME=root
 DB_PASSWORD=
 
 # App
-APP_NAME="NetxERP"
+APP_NAME="NextERP"
 APP_ENV=local
 APP_DEBUG=true
 APP_URL=http://localhost:8000
