@@ -20,7 +20,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('telefono', 30)->nullable();
             $table->string('direccion', 255)->nullable();
-            $table->boolean('activo')->default(true);
+            $table->boolean('estado')->default(true);
+            $table->softDeletes();
             $table->foreignId('role_id')
                 ->nullable()
                 ->constrained('roles')

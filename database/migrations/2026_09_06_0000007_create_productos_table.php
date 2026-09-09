@@ -29,7 +29,7 @@ return new class extends Migration
             $table->unsignedInteger('stock_minimo')->default(0);
 
             // Estado
-            $table->boolean('activo')->default(true);
+            $table->boolean('estado')->default(true);
 
             // Relación con categorías
             $table->foreignId('categoria_id')
@@ -37,10 +37,10 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->timestamps();
-
+            $table->softDeletes();
             // Índices
             $table->index('nombre');
-            $table->index('activo');
+            $table->index('estado');
         });
     }
 

@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('email', 150)->nullable()->unique();
             $table->string('telefono', 30)->nullable();
             $table->string('direccion', 255)->nullable();
-            $table->boolean('activo')->default(true);
+            $table->boolean('estado')->default(true);
             $table->timestamps();
+            $table->softDeletes();
             $table->index(['apellido', 'nombre']);
         });
     }
