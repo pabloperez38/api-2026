@@ -52,7 +52,7 @@ class AuthController extends Controller
             ) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Las credenciales proporcionadas son incorrectas.',                  
+                    'message' => 'Las credenciales proporcionadas son incorrectas.',
                 ], 401);
             }
 
@@ -93,7 +93,7 @@ class AuthController extends Controller
 
             // Error inesperado
             Log::error('Error inesperado durante el login', [
-                'message' => $e->getMessage(),               
+                'message' => $e->getMessage(),
             ]);
 
             return response()->json([
@@ -198,6 +198,45 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Ocurrió un error inesperado.',
+                'error' => 'internal_server_error',
+            ], 500);
+        }
+    }
+
+    public function me(Request $request)
+    {
+        try {
+            // Obtener el usuario autenticado
+            $user = $request->user();
+
+            // Cargar el rol asociado
+            $user->load('role');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Usuario autenticado correctamente.',
+                'data' => [
+                    'user' => [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'role' => $user->role ? [
+                            'id' => $user->role->id,
+                            'nombre' => $user->role->nombre,
+                        ] : null,
+                    ],
+                ],
+            ], 200);
+        } catch (\Throwable $e) {
+
+            Log::error('Error al obtener el usuario autenticado', [
+                'message' => $e->getMessage(),
+                'exception' => get_class($e),
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo obtener la información del usuario.',
                 'error' => 'internal_server_error',
             ], 500);
         }

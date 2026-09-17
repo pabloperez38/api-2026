@@ -20,3 +20,7 @@ Route::put('/categorias/{id}/restore', [CategoriaController::class, 'restore'])-
 //Login
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
+Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'me']);
+
+

@@ -32,9 +32,9 @@ class User extends Authenticatable
         'activo',
     ];
 
-    public function role(): BelongsTo
+    public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
     public function ventas(): HasMany
