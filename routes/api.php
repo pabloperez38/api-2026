@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 })->middleware('auth:sanctum'); */
 
 //Rutas para categorías
-Route::get('/categorias', [CategoriaController::class, 'index']);
+Route::get('/categorias', [CategoriaController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/categorias', [CategoriaController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/categorias/{id}', [CategoriaController::class, 'show'])->middleware('auth:sanctum');
 Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->middleware('auth:sanctum');
@@ -18,9 +18,12 @@ Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy'])->midd
 Route::put('/categorias/{id}/restore', [CategoriaController::class, 'restore'])->middleware('auth:sanctum');
 
 //Login
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'me']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', [AuthController::class, 'me']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
 
 
