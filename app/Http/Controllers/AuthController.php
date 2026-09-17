@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
@@ -79,7 +80,7 @@ class AuthController extends Controller
         } catch (QueryException $e) {
 
             // Error de base de datos
-            \Log::error('Error de base de datos durante el login', [
+            Log::error('Error de base de datos durante el login', [
                 'message' => $e->getMessage(),
             ]);
 
@@ -91,9 +92,8 @@ class AuthController extends Controller
         } catch (Throwable $e) {
 
             // Error inesperado
-            \Log::error('Error inesperado durante el login', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
+            Log::error('Error inesperado durante el login', [
+                'message' => $e->getMessage(),               
             ]);
 
             return response()->json([
